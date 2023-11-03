@@ -1,0 +1,70 @@
+:root {
+    --black: #141414;
+    --white: #F4F4F4;
+    --dirty-white: #E4E4E4;
+    --blue: #1F79FF;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter-Regular.woff') format('woff');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter-SemiBold.woff') format('woff');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter-ExtraBold.woff') format('woff');
+    font-weight: 800;
+}
+
+::selection {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--black);
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 800;
+}
+
+a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+button,
+input,
+textarea {
+    font-family: 'Inter';
+}
