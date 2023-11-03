@@ -38,6 +38,7 @@ body {
     background-color: var(--black);
     font-family: 'Inter', sans-serif;
     color: var(--white);
+    width: 100%;
 }
 
 h1,
