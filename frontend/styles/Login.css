@@ -1,14 +1,66 @@
+.circle {
+    height: 100px;
+    width: 100px;
+    background-color: var(--blue);
+    position: absolute;
+    border-radius: 50%;
+}
+
 .login-form-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
+    padding: 35px;
     border: .1px solid var(--grey);
     border-radius: 20px;
+    backdrop-filter: blur(30px);
 }
 
 .login-form-container form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.password-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.password-container img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.login-form-container form input:not([type='submit']) {
+    outline: none;
+    height: 30px;
+    width: 100%;
+    background-color: transparent;
+    color: var(--white);
+    border: none;
+    border-bottom: .1px solid var(--grey);
+}
+
+.submit-login {
+    height: 37px;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: var(--white);
+    background-color: var(--blue);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.link-to-register {
+    height: 37px;
+    background: transparent;
+    color: var(--blue);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
 }
