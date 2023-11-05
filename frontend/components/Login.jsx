@@ -3,6 +3,7 @@ import '../styles/Login.css'
 
 // imports 
 import { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 // icons
 import lockedIcon from '../assets/icons/lock.svg'
@@ -12,15 +13,43 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [locked, setLocked] = useState(true)
+    const navigate = useNavigate()
 
-    useEffect(() => {document.title = 'Video Net | Login'}, [])
+    useEffect(() => { document.title = 'Video Net | Login' }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const data = { email, password }
+
+        try {
+            const response = await fetch('http://localhost:3000/api/user/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const res = await response.json()
+            if (response.ok) {
+                localStorage.setItem('token', true)
+                localStorage.setItem('id', res.id)
+                localStorage.setItem('username', res.username)
+                alert(res.message)
+                navigate('/');
+            } else {
+                alert(res.error);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <>
             <div className="circle"></div>
             <div className="login-form-container">
                 <h1>Login</h1>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"

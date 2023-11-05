@@ -1,0 +1,45 @@
+.general-header {
+    background-color: var(--bright-black);
+    height: auto;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    border-bottom: .1px solid var(--grey);
+}
+
+.general-header-container {
+    max-width: 1200px;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.username {
+    width: auto;
+    height: auto;
+}
+
+.username a {
+    font-size: 18px;
+    letter-spacing: .8px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition: all .2s;
+    font-weight: 600;
+}
+
+.username a:hover {
+    background-color: var(--grey);
+}

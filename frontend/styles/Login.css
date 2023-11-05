@@ -14,6 +14,7 @@
     border: .1px solid var(--grey);
     border-radius: 20px;
     backdrop-filter: blur(30px);
+    background-color: #23232379;
 }
 
 .login-form-container form {
