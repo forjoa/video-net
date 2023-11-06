@@ -34,7 +34,6 @@ const Login = () => {
                 localStorage.setItem('token', true)
                 localStorage.setItem('id', res.id)
                 localStorage.setItem('username', res.username)
-                alert(res.message)
                 navigate('/');
             } else {
                 alert(res.error);
@@ -79,7 +78,7 @@ const Login = () => {
                     </div>
 
                     <input type="submit" value="Login" className='submit-login' />
-                    <button className='link-to-register'>Register</button>
+                    <button className='link-to-register' onClick={() => window.open('/register', '_self')}>Register</button>
                 </form>
             </div>
         </>

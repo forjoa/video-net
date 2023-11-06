@@ -1,0 +1,9 @@
+.description-input {
+    background-color: transparent;
+    color: var(--white);
+    outline: none;
+    border: .1px solid var(--grey);
+    height: 80px;
+    border-radius: 10px;
+    padding: 10px;
+}
