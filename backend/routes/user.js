@@ -10,16 +10,17 @@ const user = express.Router();
 // multer config
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+let uniquePhotoName = '';
 
-const uploadProfileImage = multer({
-  storage: multer.diskStorage({
+const storage = multer.diskStorage({
     destination: path.join(__dirname, "..", "..", "frontend", "assets", "uploads"),
     filename: (req, file, cb) => {
-      cb(null, `${file.originalname}.${file.mimetype}`);
+      uniquePhotoName = `${Date.now()}-${file.originalname}`;
+      cb(null, uniquePhotoName);
     },
-  })
 });
 
+const upload = multer({ storage });
 
 // login
 user.post("/login", async (req, res) => {
@@ -63,12 +64,8 @@ user.post("/login", async (req, res) => {
 });
 
 // register
-user.post(
-  "/register",
-  uploadProfileImage.single("profileImage"),
-  async (req, res) => {
+user.post("/register", upload.single("photo"), async (req, res) => {
     const data = req.body;
-    const photoPath = await uploadProfileImage.single("profileImage").result;
     const query =
       "INSERT INTO users(username, description, photo, email, pwd) VALUES(?,?,?,?,?)";
     const saltRounds = 10;
@@ -76,7 +73,7 @@ user.post(
     const values = [
       data.username,
       data.description,
-      photoPath,
+      uniquePhotoName,
       data.email,
       hashedPassword,
     ];
