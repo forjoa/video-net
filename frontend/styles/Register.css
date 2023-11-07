@@ -7,3 +7,45 @@
     border-radius: 10px;
     padding: 10px;
 }
+
+.choose-photo {
+    margin: 0;
+}
+
+.label-photo img {
+    filter: opacity(0.7);
+}
+
+.label-photo {
+    border: .1px solid var(--grey);
+    padding: 40px !important;
+    border-radius: 10px;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all .2s;
+    font-size: 14px;
+}
+
+.label-photo:hover {
+    filter: opacity(0.5);
+}
+
+input[type='file'] {
+    display: none;
+    font-family: SF Pro Text;
+}
+
+#photo-name-file {
+    aspect-ratio: auto;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center center;
+    margin: auto;
+    border-radius: 10px;
+}
+

@@ -38,6 +38,7 @@
     border-radius: 5px;
     transition: all .2s;
     font-weight: 600;
+    gap: 10px;
 }
 
 .username a:hover {
