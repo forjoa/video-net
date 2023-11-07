@@ -1,5 +1,6 @@
 .general-header {
-    background-color: var(--bright-black);
+    backdrop-filter: blur(30px);
+    background-color: #23232379;
     height: auto;
     width: 100%;
     position: fixed;

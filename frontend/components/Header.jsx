@@ -11,6 +11,9 @@ const Header = () => {
     const username = localStorage.getItem('username')
 
     return (
+        <>
+        <div className="circle" style={{ top: 0, left: 100}}></div>
+        <div className="circle" style={{ top: 0, right: 100, background: 'red'}}></div>
         <header className="general-header">
             <div className="general-header-container">
                 <a href='/' className="logo">
@@ -24,6 +27,7 @@ const Header = () => {
                 </div>
             </div>
         </header>
+        </>
     )
 }
 

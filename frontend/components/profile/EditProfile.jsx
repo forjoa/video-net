@@ -8,6 +8,9 @@ import Header from "../Header.jsx";
 // styles
 import '../../styles/EditProfile.css'
 
+// icons 
+import { IconPencil, IconSwitch2 } from '@tabler/icons-react'
+
 const EditProfile = () => {
     const [allInfo, setAllInfo] = useState({});
     const [loading, setLoading] = useState(true);
@@ -85,8 +88,8 @@ const EditProfile = () => {
                                 src=""
                                 alt="Profile Photo"
                             />
-                            <button>Edit</button>
-                            <button>Change</button>
+                            <button><IconPencil />Edit</button>
+                            <button><IconSwitch2 />Change</button>
                             <input
                                 type="file"
                                 name="photo"
