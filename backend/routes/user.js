@@ -96,8 +96,8 @@ user.post("/register", upload.single("photo"), async (req, res) => {
 });
 
 // my info
-user.post("/my-info", (req, res) => {
-  const myId = req.body.id;
+user.get("/my-info", (req, res) => {
+  const myId = req.query.id;
 
   if (!myId) {
     res.status(400).send({ message: "Missing user ID" });
@@ -113,10 +113,9 @@ user.post("/my-info", (req, res) => {
       return;
     }
 
-    res.status(200).send(result);
+    res.status(200).send(result[0]);
   });
 });
-
 
 // get all users
 user.get("/users", (req, res) => {
