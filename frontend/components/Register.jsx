@@ -63,7 +63,7 @@ const Register = () => {
             <div className="circle"></div>
             <div className="login-form-container">
                 <h1>Register</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <label htmlFor="username">Username</label>
                     <input
                         type="text"

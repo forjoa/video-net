@@ -17,8 +17,8 @@ const Header = () => {
                     <img src={videoLogo} alt="Video Net Logo" />
                 </a>
                 <div className="username">
-                    <a href='/'>
-                        {`@${username}`}
+                    <a href='/edit-profile'>
+                        {`${username}`}
                         <IconUserFilled size={20}/>
                     </a>
                 </div>

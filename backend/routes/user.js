@@ -10,14 +10,21 @@ const user = express.Router();
 // multer config
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-let uniquePhotoName = '';
+let uniquePhotoName = "";
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, "..", "..", "frontend", "assets", "uploads"),
-    filename: (req, file, cb) => {
-      uniquePhotoName = `${Date.now()}-${file.originalname}`;
-      cb(null, uniquePhotoName);
-    },
+  destination: path.join(
+    __dirname,
+    "..",
+    "..",
+    "frontend",
+    "assets",
+    "uploads"
+  ),
+  filename: (req, file, cb) => {
+    uniquePhotoName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniquePhotoName);
+  },
 });
 
 const upload = multer({ storage });
@@ -65,29 +72,51 @@ user.post("/login", async (req, res) => {
 
 // register
 user.post("/register", upload.single("photo"), async (req, res) => {
-    const data = req.body;
-    const query =
-      "INSERT INTO users(username, description, photo, email, pwd) VALUES(?,?,?,?,?)";
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-    const values = [
-      data.username,
-      data.description,
-      uniquePhotoName,
-      data.email,
-      hashedPassword,
-    ];
+  const data = req.body;
+  const query =
+    "INSERT INTO users(username, description, photo, email, pwd) VALUES(?,?,?,?,?)";
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+  const values = [
+    data.username,
+    data.description,
+    uniquePhotoName,
+    data.email,
+    hashedPassword,
+  ];
 
-    database.query(query, values, (err, result) => {
-      if (err) {
-        res.status(500).send({ message: `Error while saving data ${result}` });
-        return;
-      }
+  database.query(query, values, (err, result) => {
+    if (err) {
+      res.status(500).send({ message: `Error while saving data ${result}` });
+      return;
+    }
 
-      res.status(200).send({ message: "Data saved well" });
-    });
+    res.status(200).send({ message: "Data saved well" });
+  });
+});
+
+// my info
+user.post("/my-info", (req, res) => {
+  const myId = req.body.id;
+
+  if (!myId) {
+    res.status(400).send({ message: "Missing user ID" });
+    return;
   }
-);
+
+  const query = "SELECT * FROM users WHERE id = ?";
+
+  database.query(query, myId, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send({ message: "Error while searching your info" });
+      return;
+    }
+
+    res.status(200).send(result);
+  });
+});
+
 
 // get all users
 user.get("/users", (req, res) => {
