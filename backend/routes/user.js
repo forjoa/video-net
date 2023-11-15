@@ -1,15 +1,11 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 import multer from 'multer'
-//import path, { dirname } from 'path'
-//import { fileURLToPath } from 'url'
 import database from '../database/database.js'
 
 const user = express.Router()
 
 // multer config
-//const __filename = fileURLToPath(import.meta.url)
-//const __dirname = dirname(__filename)
 let uniquePhotoName = ''
 
 const storage = multer.diskStorage({
