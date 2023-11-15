@@ -3,11 +3,14 @@ import '../styles/Header.css'
 
 // images
 import videoLogo from '../assets/icons/videoLogo.png'
-import { IconUserCircle } from '@tabler/icons-react'
+import { IconUserCircle, IconPencil, IconVideo, IconUsers } from '@tabler/icons-react'
 
 // imports
+import { useState } from 'react'
 
 const Header = () => {
+    const [optionsDisplay, setOptionsDisplay] = useState(false)
+
     const username = localStorage.getItem('username')
 
     return (
@@ -20,11 +23,20 @@ const Header = () => {
                         <img src={videoLogo} alt="Video Net Logo" />
                     </a>
                     <div className="username">
-                        <a href='/edit-profile'>
+                        <a href='#' onClick={() => setOptionsDisplay(!optionsDisplay)}>
                             {`${username}`}
                             <IconUserCircle size={23} />
                         </a>
                     </div>
+                </div>
+
+                <div className="header-options" style={{ display: optionsDisplay ? 'block' : 'none' }}>
+                    <nav>
+                        <a href="/edit-profile">Edit profile <IconPencil /></a>
+                        <a href="/my-videos">My videos <IconVideo /></a>
+                        <a href='/follows'>Followers / Following <IconUsers /></a>
+                        <span></span>
+                    </nav>
                 </div>
             </header>
         </>

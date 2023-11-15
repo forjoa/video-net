@@ -32,7 +32,7 @@
 .username a {
     font-size: 18px;
     letter-spacing: .8px;
-    padding: 10px 15px ;
+    padding: 10px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,4 +44,59 @@
 
 .username a:hover {
     background-color: var(--grey);
+}
+
+.header-options {
+    backdrop-filter: blur(30px);
+    position: absolute;
+    top: 100px;
+    right: 15%;
+    background: #23232379;
+    z-index: 10;
+    border-radius: 10px;
+    border: .1px solid var(--grey);
+    padding: 20px;
+}
+
+.header-options nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-options nav a {
+    position: relative;
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    z-index: 20;
+    transition: all .2s;
+}
+
+.header-options nav span {
+    position: absolute;
+    top: 20px;
+    width: 211.24px;
+    height: 34px;
+    border-radius: 8px;
+    transition: .15s;
+}
+
+.header-options nav a:nth-child(1):hover~span {
+    background: var(--blue);
+}
+
+.header-options nav a:nth-child(2):hover~span {
+    background: var(--blue);
+    top: 55px;
+}
+
+.header-options nav a:nth-child(3):hover~span {
+    background: var(--blue);
+    top: 88px;
 }

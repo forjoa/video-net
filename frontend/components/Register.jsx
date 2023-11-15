@@ -86,7 +86,7 @@ const Register = () => {
                     />
 
                     <p className='choose-photo'>Profile photo</p>
-                    <label htmlFor='photo' className='label-photo' id='label-photo'><IconSquareRoundedPlus size={30} stroke={2} color="#4f4f4f"/> </label>
+                    <label htmlFor='photo' className='label-photo' id='label-photo'><IconSquareRoundedPlus size={30} stroke={1} color="#4f4f4f"/> </label>
                     <img id='photo-name-file' alt='Profile photo' style={{ display: 'none' }} />
                     <input
                         type='file'

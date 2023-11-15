@@ -1,135 +1,130 @@
-import express from "express";
-import bcrypt from "bcrypt";
-import multer from "multer";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-import database from "../database/database.js";
+import express from 'express'
+import bcrypt from 'bcrypt'
+import multer from 'multer'
+//import path, { dirname } from 'path'
+//import { fileURLToPath } from 'url'
+import database from '../database/database.js'
 
-const user = express.Router();
+const user = express.Router()
 
 // multer config
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-let uniquePhotoName = "";
+//const __filename = fileURLToPath(import.meta.url)
+//const __dirname = dirname(__filename)
+let uniquePhotoName = ''
 
 const storage = multer.diskStorage({
-  destination: path.join(
-    __dirname,
-    "..",
-    "..",
-    "frontend",
-    "assets",
-    "uploads"
-  ),
-  filename: (req, file, cb) => {
-    uniquePhotoName = `${Date.now()}-${file.originalname}`;
-    cb(null, uniquePhotoName);
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/')
   },
-});
+  filename: (req, file, cb) => {
+    uniquePhotoName = `${Date.now()}-${file.originalname}`
+    cb(null, uniquePhotoName)
+  },
+})
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage })
 
 // login
-user.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  const query = "SELECT * FROM users WHERE email = ?";
+user.post('/login', async (req, res) => {
+  const { email, password } = req.body
+  const query = 'SELECT * FROM users WHERE email = ?'
 
   database.query(query, [email], async (err, results) => {
     if (err) {
-      console.error(err);
-      res.status(500).json(err);
-      return;
+      console.error(err)
+      res.status(500).json(err)
+      return
     }
 
     // user doesn't exist
     if (results.length === 0) {
-      res.status(401).json({ error: "User not found" });
-      return;
+      res.status(401).json({ error: 'User not found' })
+      return
     }
 
-    const user = results[0];
-    const hashedPassword = user.pwd;
+    const user = results[0]
+    const hashedPassword = user.pwd
 
     try {
-      const passwordMatch = await bcrypt.compare(password, hashedPassword);
+      const passwordMatch = await bcrypt.compare(password, hashedPassword)
 
       if (passwordMatch) {
         res.status(200).json({
-          message: "Authentication correctly",
+          message: 'Authentication correctly',
           id: user.id,
           username: user.username,
-        });
+        })
       } else {
         // incorrect password
-        res.status(401).json({ error: "Incorrect password" });
+        res.status(401).json({ error: 'Incorrect password' })
       }
     } catch (error) {
-      console.error(error);
-      res.status(500).json(error);
+      console.error(error)
+      res.status(500).json(error)
     }
-  });
-});
+  })
+})
 
 // register
-user.post("/register", upload.single("photo"), async (req, res) => {
-  const data = req.body;
+user.post('/register', upload.single('image'), async (req, res) => {
+  const data = req.body
   const query =
-    "INSERT INTO users(username, description, photo, email, pwd) VALUES(?,?,?,?,?)";
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+    'INSERT INTO users(username, description, photo, email, pwd) VALUES(?,?,?,?,?)'
+  const saltRounds = 10
+  const hashedPassword = await bcrypt.hash(data.password, saltRounds)
   const values = [
     data.username,
     data.description,
     uniquePhotoName,
     data.email,
     hashedPassword,
-  ];
+  ]
 
   database.query(query, values, (err, result) => {
     if (err) {
-      res.status(500).send({ message: `Error while saving data ${result}` });
-      return;
+      res.status(500).send({ message: `Error while saving data ${result}` })
+      return
     }
 
-    res.status(200).send({ message: "Data saved well" });
-  });
-});
+    res.status(200).send({ message: 'Data saved well' })
+  })
+})
 
 // my info
-user.get("/my-info", (req, res) => {
-  const myId = req.query.id;
+user.get('/my-info', (req, res) => {
+  const myId = req.query.id
 
   if (!myId) {
-    res.status(400).send({ message: "Missing user ID" });
-    return;
+    res.status(400).send({ message: 'Missing user ID' })
+    return
   }
 
-  const query = "SELECT * FROM users WHERE id = ?";
+  const query = 'SELECT * FROM users WHERE id = ?'
 
   database.query(query, myId, (err, result) => {
     if (err) {
-      console.error(err);
-      res.status(500).send({ message: "Error while searching your info" });
-      return;
+      console.error(err)
+      res.status(500).send({ message: 'Error while searching your info' })
+      return
     }
 
-    res.status(200).send(result[0]);
-  });
-});
+    res.status(200).send(result[0])
+  })
+})
 
 // get all users
-user.get("/users", (req, res) => {
-  const query = "SELECT * FROM users";
+user.get('/users', (req, res) => {
+  const query = 'SELECT * FROM users'
 
   database.query(query, (err, result) => {
     if (err) {
-      console.error(err);
-      res.status(500).json(err);
-      return;
+      console.error(err)
+      res.status(500).json(err)
+      return
     }
 
-    res.json(result);
-  });
-});
+    res.json(result)
+  })
+})
 
-export default user;
+export default user
