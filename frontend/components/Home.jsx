@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 // components
 import Header from './Header.jsx'
+import HomeMain from "./home/HomeMain.jsx";
 
 const Home = () => {
     const token = localStorage.getItem("token");
@@ -20,6 +21,7 @@ const Home = () => {
     return (
         <>
             <Header />
+            <HomeMain />
         </>
     )
 }

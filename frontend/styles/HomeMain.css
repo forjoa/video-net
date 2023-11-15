@@ -1,0 +1,70 @@
+.home-main {
+    background-color: #23232379;
+    width: 1000px;
+    height: 86vh;
+    border: .1px solid var(--grey);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    overflow-y: scroll;
+}
+
+.home-main::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.home-main::-webkit-scrollbar-thumb {
+    background-color: var(--grey); 
+    border-radius: 10px; 
+}
+
+.home-main::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+.upload-videos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-videos input {
+    background-color: var(--grey);
+    outline: none;
+    margin-top: 10px;
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    padding: 10px;
+    color: var(--white);
+    font-size: 16px;
+}
+
+.upload-videos input::placeholder {
+    color: var(--dirty-white);
+}
+
+.upload-videos button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    background-color: var(--blue);
+    padding: 12px 20px;
+    font-size: 16px;
+    margin-left: 450px;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.upload-videos button:hover {
+    letter-spacing: 1px;
+    gap: 7px;
+}
