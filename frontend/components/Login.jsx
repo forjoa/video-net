@@ -67,6 +67,7 @@ const Login = () => {
                             name="password"
                             id="password"
                             className='password-input'
+                            autoComplete='current-password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
