@@ -32,11 +32,11 @@
 }
 
 .upload-videos input {
-    background-color: var(--grey);
+    background-color: transparent;
     outline: none;
     margin-top: 10px;
     width: 70%;
-    border: none;
+    border: .1px solid var(--grey);
     border-radius: 10px;
     height: 50px;
     padding: 10px;
