@@ -8,23 +8,14 @@ const UploadVideo = () => {
     const [concept, setConcept] = useState('')
     const [videoURL, setVideoURL] = useState('')
 
-    console.log(concept, videoURL)
-
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        // const data = new FormData()
-        // data.append('concept', concept)
-        // data.append('videoURL', videoURL)
-        // data.append('userId', localStorage.getItem('id'))
 
         const data = {
             concept: concept,
             url: videoURL,
             userId: localStorage.getItem('id')
         }
-
-        console.log(data)
 
         try {
             const response = await fetch('http://localhost:3000/api/video/upload-video', {
@@ -38,6 +29,8 @@ const UploadVideo = () => {
             if (response.ok) {
                 const responseData = await response.json();
                 alert(responseData.message);
+                setConcept('')
+                setVideoURL('')
             } else {
                 console.error('Error en la solicitud:', response.statusText);
             }

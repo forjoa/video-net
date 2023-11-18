@@ -2,29 +2,35 @@ create database videonet;
 
 use videonet;
 
-create table users (
-	id int primary key auto_increment not null,
-    username varchar(255),
-    description text,
-    photo varchar(255),
-    email varchar(255),
-    pwd varchar(255)
+-- Tabla users
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    username VARCHAR(255),
+    description TEXT,
+    photo VARCHAR(255),
+    email VARCHAR(255),
+    pwd VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create table videos (
-	id int primary key auto_increment not null,
-    concept text,
-    url varchar(255),
-    userID int,
-    foreign key (userID) references users(id)
+-- Tabla videos
+CREATE TABLE videos (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    concept TEXT,
+    url VARCHAR(255),
+    userID INT,
+    FOREIGN KEY (userID) REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create table followers (
-	id int primary key auto_increment not null,
-    followed int,
-    follower int,
-    foreign key (followed) references users(id),
-    foreign key (follower) references users(id)
+-- Tabla followers
+CREATE TABLE followers (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    followed INT,
+    follower INT,
+    FOREIGN KEY (followed) REFERENCES users(id),
+    FOREIGN KEY (follower) REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 select * from users;

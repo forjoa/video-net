@@ -19,4 +19,25 @@ video.post('/upload-video', (req, res) => {
   })
 })
 
+// home
+video.post('/home', (req, res) => {
+  const { id } = req.body
+  const query =
+    'SELECT * FROM videos WHERE userID = ' +
+    Number(id) +
+    ' OR userID IN (SELECT followed FROM followers WHERE follower = ' +
+    Number(id) +
+    ') ORDER BY created_at DESC;'
+
+  database.query(query, [id], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).json({ message: `Error looking for videos ${result}` })
+      return
+    }
+
+    res.json(result)
+  })
+})
+
 export default video

@@ -1,0 +1,21 @@
+.all-videos {
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.video {
+    border: .1px solid var(--grey);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.video iframe {
+    margin: auto;
+}
