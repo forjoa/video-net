@@ -39,6 +39,7 @@ const Videos = () => {
         <section className="all-videos">
             {videos.map((video) => (
                 <div key={video.id} className="video">
+                    <h3>{video.uploader_name}</h3>
                     <p>{video.concept}</p>
                     <iframe
                         title={video.concept}

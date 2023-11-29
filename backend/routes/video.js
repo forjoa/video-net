@@ -22,12 +22,16 @@ video.post('/upload-video', (req, res) => {
 // home
 video.post('/home', (req, res) => {
   const { id } = req.body
-  const query =
-    'SELECT * FROM videos WHERE userID = ' +
-    Number(id) +
-    ' OR userID IN (SELECT followed FROM followers WHERE follower = ' +
-    Number(id) +
-    ') ORDER BY created_at DESC;'
+  const query = `
+    SELECT videos.*, users.username AS uploader_name
+    FROM videos
+    INNER JOIN users ON videos.userID = users.id
+    WHERE videos.userID = ${Number(id)}
+       OR videos.userID IN (SELECT followed FROM followers WHERE follower = ${Number(
+         id
+       )})
+    ORDER BY videos.created_at DESC;
+  `
 
   database.query(query, [id], (err, result) => {
     if (err) {
