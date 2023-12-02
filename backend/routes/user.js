@@ -1,6 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 import multer from 'multer'
+import fs from 'fs'
 import database from '../database/database.js'
 
 const user = express.Router()
@@ -82,6 +83,10 @@ user.post('/register', upload.single('image'), async (req, res) => {
       return
     }
 
+    fs.mkdir(`public/users/${data.username}`, (error) => {
+      if (error) throw error
+      console.log('folder successfully created')
+    })
     res.status(200).send({ message: 'Data saved well' })
   })
 })
