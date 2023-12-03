@@ -63,7 +63,7 @@ user.post('/login', async (req, res) => {
 })
 
 // register
-user.post('/register', upload.single('image'), async (req, res) => {
+user.post('/register', upload.single('photo'), async (req, res) => {
   const data = req.body
   const query =
     'INSERT INTO users(username, description, photo, email, pwd) VALUES(?,?,?,?,?)'
@@ -85,7 +85,6 @@ user.post('/register', upload.single('image'), async (req, res) => {
 
     fs.mkdir(`public/users/${data.username}`, (error) => {
       if (error) throw error
-      console.log('folder successfully created')
     })
     res.status(200).send({ message: 'Data saved well' })
   })

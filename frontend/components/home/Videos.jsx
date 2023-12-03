@@ -23,7 +23,7 @@ const Videos = () => {
                     const videosWithId = responseL.map((video) => {
                         const parts = video.url.split('v=');
                         const videoId = parts[1];
-                        return { ...video, youtubeVideoId: videoId };
+                        return { ...video, youtubeVideoId: (videoId+'').split('&')[0] };
                     });
                     setVideos(videosWithId);
                 }
