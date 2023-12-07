@@ -5,6 +5,20 @@
     align-items: center;
     width: 100%;
     gap: 20px;
+    overflow-y: scroll;
+}
+
+.all-videos::-webkit-scrollbar {
+    width: 10px; 
+}
+
+.all-videos::-webkit-scrollbar-thumb {
+    background-color: var(--grey); 
+    border-radius: 10px; 
+}
+
+.all-videos::-webkit-scrollbar-track {
+    background-color: transparent; 
 }
 
 .video {
