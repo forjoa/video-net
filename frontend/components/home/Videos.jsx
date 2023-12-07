@@ -21,11 +21,11 @@ const Videos = () => {
                 if (response.ok) {
                     const responseL = await response.json();
                     const videosWithId = responseL.map((video) => {
-                        let parts = ''
                         let videoId = ''
                         if (video.url.includes('watch')) {
-                            parts = video.url.split('v=');
-                            videoId = parts[1];
+                            videoId = video.url.split('v=')[1]
+                        } else {
+                            videoId = video.url.split('/')[3].split('?si')[0]
                         }
                         return { ...video, youtubeVideoId: (videoId + '').split('&')[0] };
                     });
@@ -43,7 +43,7 @@ const Videos = () => {
         <section className="all-videos">
             {videos.map((video) => (
                 <div key={video.id} className="video">
-                    <h3>{video.uploader_name}</h3>
+                    <h3><a>{video.uploader_name}</a></h3>
                     <p>{video.concept}</p>
                     <iframe
                         title={video.concept}
