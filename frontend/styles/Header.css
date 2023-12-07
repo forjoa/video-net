@@ -100,3 +100,8 @@
     background: var(--blue);
     top: 88px;
 }
+
+.header-options nav a:nth-child(4):hover~span {
+    background: rgba(255, 0, 0, .3);
+    top: 123px;
+}

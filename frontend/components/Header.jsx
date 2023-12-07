@@ -3,7 +3,7 @@ import '../styles/Header.css'
 
 // images
 import videoLogo from '../assets/icons/videoLogo.png'
-import { IconUserCircle, IconPencil, IconVideo, IconUsers } from '@tabler/icons-react'
+import { IconUserCircle, IconPencil, IconVideo, IconUsers, IconLogout } from '@tabler/icons-react'
 
 // imports
 import { useState } from 'react'
@@ -12,6 +12,14 @@ const Header = () => {
     const [optionsDisplay, setOptionsDisplay] = useState(false)
 
     const username = localStorage.getItem('username')
+
+    const logout = () => {
+        localStorage.removeItem('username')
+        localStorage.removeItem('id')
+        localStorage.removeItem('token')
+
+        window.location.reload()
+    }
 
     return (
         <>
@@ -35,6 +43,7 @@ const Header = () => {
                         <a href="/edit-profile">Edit profile <IconPencil /></a>
                         <a href="/my-videos">My videos <IconVideo /></a>
                         <a href='/follows'>Followers / Following <IconUsers /></a>
+                        <a href="/" style={{ color: 'red' }} onClick={logout}>Log out <IconLogout color='red' /></a>
                         <span></span>
                     </nav>
                 </div>
