@@ -21,9 +21,13 @@ const Videos = () => {
                 if (response.ok) {
                     const responseL = await response.json();
                     const videosWithId = responseL.map((video) => {
-                        const parts = video.url.split('v=');
-                        const videoId = parts[1];
-                        return { ...video, youtubeVideoId: (videoId+'').split('&')[0] };
+                        let parts = ''
+                        let videoId = ''
+                        if (video.url.includes('watch')) {
+                            parts = video.url.split('v=');
+                            videoId = parts[1];
+                        }
+                        return { ...video, youtubeVideoId: (videoId + '').split('&')[0] };
                     });
                     setVideos(videosWithId);
                 }
@@ -43,7 +47,7 @@ const Videos = () => {
                     <p>{video.concept}</p>
                     <iframe
                         title={video.concept}
-                        width="560"
+                        width="650"
                         height="315"
                         src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
                         frameBorder="0"

@@ -36,3 +36,4 @@ CREATE TABLE followers (
 select * from users;
 select * from videos;
 select * from followers;
+
