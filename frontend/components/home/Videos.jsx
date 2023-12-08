@@ -41,20 +41,22 @@ const Videos = () => {
 
     return (
         <section className="all-videos">
-            {videos.map((video) => (
-                <div key={video.id} className="video">
-                    <h3><a>{video.uploader_name}</a></h3>
-                    <p>{video.concept}</p>
-                    <iframe
-                        title={video.concept}
-                        width="650"
-                        height="315"
-                        src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
-                        frameBorder="0"
-                        allowFullScreen
-                    ></iframe>
-                </div>
-            ))}
+            {videos.length > 0 ?
+                videos.map((video) => (
+                    <div key={video.id} className="video">
+                        <h3><a>{video.uploader_name}</a></h3>
+                        <p>{video.concept}</p>
+                        <iframe
+                            title={video.concept}
+                            width="650"
+                            height="315"
+                            src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
+                            frameBorder="0"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                ))
+                : (<p>No videos yet</p>)}
         </section>
     );
 };
