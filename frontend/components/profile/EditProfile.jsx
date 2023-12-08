@@ -46,7 +46,7 @@ const EditProfile = () => {
     }, [navigate, token, userId]);
 
     // form variables 
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(localStorage.getItem('username'))
     const [description, setDescription] = useState('')
 
     return (
@@ -78,7 +78,7 @@ const EditProfile = () => {
                     <label htmlFor="photo"><h2>Profile photo</h2></label>
                     <div className="photo-container">
                         <img
-                            src=""
+                            src={`../../../public/users/${username}/profile.webp`}
                             alt="Profile Photo"
                         />
                         <button className="edit-photo-button"><IconPencil />Edit</button>
