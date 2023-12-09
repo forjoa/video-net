@@ -132,4 +132,19 @@ user.get('/users', (req, res) => {
   })
 })
 
+user.get('/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId)
+  const query = 'SELECT * FROM users WHERE id = ?'
+
+  database.query(query, userId, (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'Error while searching user info'})
+      return
+    }
+
+    res.json(result)
+  })
+})
+
 export default user
