@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 // styles
 import '../../styles/Videos.css'
+import { Link } from "react-router-dom";
 
 const Videos = () => {
     const [videos, setVideos] = useState([]);
@@ -44,7 +45,7 @@ const Videos = () => {
             {videos.length > 0 ?
                 videos.map((video) => (
                     <div key={video.id} className="video">
-                        <h3><a>{video.uploader_name}</a></h3>
+                        <h3><Link to={`/user/${video.uploader_id}`}>{video.uploader_name}</Link></h3>
                         <p>{video.concept}</p>
                         <iframe
                             title={video.concept}
