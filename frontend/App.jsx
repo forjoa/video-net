@@ -10,12 +10,14 @@ import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
 import EditProfile from './components/profile/EditProfile.jsx'
 import User from './components/User.jsx'
+import Presentation from './components/Presentation.jsx'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/presentation' element={<Presentation />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/edit-profile' element={<EditProfile />} />
