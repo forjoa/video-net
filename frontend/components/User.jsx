@@ -53,7 +53,7 @@ const User = () => {
                         <p>{user.description}</p>
                     </div>
                     <div className="user-videos-container">
-                        {videos.map(video => {
+                        {videos ? videos.map(video => {
                             return (
                                 <div key={video.id} className="video-user">
                                     <p>{video.concept}</p>
@@ -65,7 +65,7 @@ const User = () => {
                                     ></iframe>
                                 </div>
                             )
-                        })}
+                        }) : (<p>Loading...</p>)}
                     </div>
                 </div>
             ) : (

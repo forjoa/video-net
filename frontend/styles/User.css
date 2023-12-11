@@ -8,6 +8,7 @@
     padding: 20px;
     display: grid;
     place-items: center;
+    gap: 20px;
 }
 
 .presentation {
@@ -24,9 +25,10 @@
 
 .user-videos-container {
     width: 100%;
+    height: 100%;
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 3px 20px; 
+    gap: 20px 20px; 
     overflow-y: scroll;
 }
 
