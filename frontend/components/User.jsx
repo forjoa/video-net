@@ -21,6 +21,11 @@ const User = () => {
             .catch(error => console.error('Error: ', error))
     }, [userId])
 
+    
+    useEffect(() => {
+        document.title = `Video Net | User`
+    })
+
     console.log(user)
 
     return (
@@ -31,6 +36,7 @@ const User = () => {
                     <div className="presentation">
                         <img src={`/public/users/${user.username}/profile.webp`} alt={user.username} />
                         <h2>{user.username}</h2>
+                        <p>{user.description}</p>
                     </div>
                     <div className="user-videos-container">
                         
