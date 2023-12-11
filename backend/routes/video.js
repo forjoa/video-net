@@ -44,4 +44,20 @@ video.post('/home', (req, res) => {
   })
 })
 
+// get user videos
+video.get('/user/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId)
+  const query = 'SELECT * FROM videos WHERE userID = ?'
+
+  database.query(query, userId, (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'Error while looking for user videos' })
+      return
+    }
+    
+    res.json(result)
+  })
+})
+
 export default video

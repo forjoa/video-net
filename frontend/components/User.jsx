@@ -11,8 +11,7 @@ import '../styles/User.css'
 const User = () => {
     const { userId } = useParams()
     const [user, setUser] = useState()
-
-    console.log(userId)
+    const [videos, setVideos] = useState()
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/user/${userId}`)
@@ -21,12 +20,27 @@ const User = () => {
             .catch(error => console.error('Error: ', error))
     }, [userId])
 
-    
+    useEffect(() => {
+        fetch(`http://localhost:3000/api/video/user/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const videosWithId = data.map((video) => {
+                    let videoId = ''
+                    if (video.url.includes('watch')) {
+                        videoId = video.url.split('v=')[1]
+                    } else {
+                        videoId = video.url.split('/')[3].split('?si')[0]
+                    }
+                    return { ...video, youtubeVideoId: (videoId + '').split('&')[0] };
+                });
+                setVideos(videosWithId);
+            })
+            .catch(error => console.error('Error: ' + error))
+    }, [userId])
+
     useEffect(() => {
         document.title = `Video Net | User`
     })
-
-    console.log(user)
 
     return (
         <>
@@ -39,7 +53,19 @@ const User = () => {
                         <p>{user.description}</p>
                     </div>
                     <div className="user-videos-container">
-                        
+                        {videos.map(video => {
+                            return (
+                                <div key={video.id} className="video-user">
+                                    <p>{video.concept}</p>
+                                    <iframe
+                                        title={video.concept}
+                                        src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
+                                        frameBorder="0"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             ) : (
