@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 
 const Presentation = () => {
     useEffect(() => {
-        document.title = 'Video Net | Presentation'
+        document.title = 'Video Net | Your favorite network to share your videos'
     })
 
     return (
