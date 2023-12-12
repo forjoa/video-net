@@ -65,10 +65,12 @@ video.post('/my-videos', (req, res) => {
   const { id } = req.body
   const query = 'SELECT * FROM videos WHERE userID = ?'
 
-  database.query(query, id, (err, result) => {
+  database.query(query, [id], (err, result) => {
     if (err) {
       console.error(err)
-      res.status(500).send({ message: 'Error while looking for user videos' })
+      res
+        .status(500)
+        .send({ message: 'Error while looking for user videos. ' + err })
       return
     }
 

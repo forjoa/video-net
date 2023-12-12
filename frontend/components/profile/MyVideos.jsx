@@ -6,10 +6,12 @@ const MyVideos = () => {
     const [myVideos, setMyVideos] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/video/my-videos', {
+        fetch('http://localhost:3000/api/video/home', {
             method: 'POST',
-            headers: { 'Content-Type': 'application-json' },
-            body: JSON.stringify(userId)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: userId })
         })
             .then(response => response.json())
             .then(data => {
