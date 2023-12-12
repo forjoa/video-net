@@ -11,6 +11,7 @@ import Register from './components/Register.jsx'
 import EditProfile from './components/profile/EditProfile.jsx'
 import User from './components/User.jsx'
 import Presentation from './components/Presentation.jsx'
+import MyVideos from './components/profile/MyVideos.jsx'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/edit-profile' element={<EditProfile />} />
+        <Route path='/my-videos' element={<MyVideos />} />
         <Route path='/user/:userId' element={<User />} />
         <Route index element={<Home />} />
       </Routes>
