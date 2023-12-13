@@ -12,6 +12,7 @@ const User = () => {
     const { userId } = useParams()
     const [user, setUser] = useState()
     const [videos, setVideos] = useState()
+    const [follow, setFollow] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/user/${userId}`)
@@ -51,6 +52,12 @@ const User = () => {
                         <img src={`/public/users/${user.username}/profile.webp`} alt={user.username} />
                         <h2>{user.username}</h2>
                         <p>{user.description}</p>
+                        <button 
+                            onClick={() => setFollow(!follow)}
+                            className={follow ? 'btn-unfollow' : 'btn-follow'}
+                        >
+                            {follow ? 'Unfollow' : 'Follow'}
+                        </button>
                     </div>
                     <div className="user-videos-container">
                         {videos ? videos.map(video => {

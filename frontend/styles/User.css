@@ -61,3 +61,22 @@
     height: 100%;
 }
 
+.btn-follow {
+    background-color: var(--blue);
+    border: 3px solid var(--blue);
+    color: var(--white);
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-unfollow {
+    background-color: rgba(255, 0, 0, .3);
+    border: 3px solid var(--red);
+    color: var(--red);
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
