@@ -1,3 +1,5 @@
+// images
+import presentationImage from '../../assets/images/presentation.png'
 
 const PresentationHome = () => {
     return (
@@ -10,7 +12,7 @@ const PresentationHome = () => {
                         </h1>
                     </div>
                     <div className="presentation-home-image">
-                        
+                        <img src={presentationImage} alt="Presentation Image" />
                     </div>
                 </div>
             </div>

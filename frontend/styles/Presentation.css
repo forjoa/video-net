@@ -59,3 +59,28 @@
 .register-button:hover {
     letter-spacing: 1.2px;
 }
+
+.presentation-home-container {
+    width: 100vw;
+    height: 87vh;
+    margin-top: 100px;
+    display: grid;
+    place-items: center;
+}
+
+.presentation-home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    width: 80%;
+}
+
+.presentation-home-title {
+    display: flex;
+    align-items: center;
+}
+
+.presentation-home-image img {
+    width: 100%;
+    border-radius: 10px;
+}
