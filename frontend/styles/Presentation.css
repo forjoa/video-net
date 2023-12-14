@@ -80,6 +80,17 @@
     align-items: center;
 }
 
+.presentation-home-title h1 {
+    font-size: 48px;
+}
+
+.presentation-home-title h1 span {
+    background: linear-gradient(var(--blue), #5096ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
 .presentation-home-image img {
     width: 100%;
     border-radius: 10px;
