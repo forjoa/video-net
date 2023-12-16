@@ -11,7 +11,7 @@ const PresentationHeader = () => {
                 <div className="logo-container">
                     <Link to='/presentation'>
                         <img src={videoLogo} alt="Video Logo" />
-                        <p>Video Net </p>
+                        <p>{`{ Video Net }`} </p>
                     </Link>
                 </div>
 
