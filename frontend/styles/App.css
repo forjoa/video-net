@@ -45,6 +45,8 @@ body {
     height: 100vh;
     display: grid;
     place-items: center;
+    background-image: radial-gradient(circle, var(--grey) 1px, transparent 1px);
+    background-size: 100px 100px;
 }
 
 h1,
