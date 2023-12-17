@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 100px;
+    backdrop-filter: blur(20px);
 }
 
 .upload-videos {
