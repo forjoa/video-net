@@ -43,6 +43,10 @@ const User = () => {
         document.title = `Video Net | User`
     })
 
+    const following = () => {
+        setFollow(!follow)
+    }
+
     return (
         <>
             <Header />
@@ -53,7 +57,7 @@ const User = () => {
                         <h2>{user.username}</h2>
                         <p>{user.description}</p>
                         <button 
-                            onClick={() => setFollow(!follow)}
+                            onClick={() => following()}
                             className={follow ? 'btn-unfollow' : 'btn-follow'}
                         >
                             {follow ? 'Unfollow' : 'Follow'}
