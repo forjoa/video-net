@@ -85,7 +85,7 @@
 }
 
 .presentation-home-title h1 span {
-    background: linear-gradient(var(--blue), #5096ff);
+    background: linear-gradient(var(--blue), #5397fe);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
