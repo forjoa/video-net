@@ -15,6 +15,10 @@ const Login = () => {
     const [locked, setLocked] = useState(true)
     const navigate = useNavigate()
 
+    const token = localStorage.getItem("token");
+
+    useEffect(() => { if (token) navigate("/") })
+
     useEffect(() => { document.title = 'Video Net | Login' }, [])
 
     const handleSubmit = async (e) => {
