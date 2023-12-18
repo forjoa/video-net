@@ -132,6 +132,7 @@ user.get('/users', (req, res) => {
   })
 })
 
+// get one user
 user.get('/:userId', (req, res) => {
   const userId = parseInt(req.params.userId)
   const query = 'SELECT * FROM users WHERE id = ?'
@@ -140,6 +141,22 @@ user.get('/:userId', (req, res) => {
     if (err) {
       console.error(err)
       res.status(500).send({ message: 'Error while searching user info'})
+      return
+    }
+
+    res.json(result)
+  })
+})
+
+// follow and unfollow
+user.post('/follow', (req, res) => {
+  const { userFollowed, userFollowing } = req.params
+  const query = 'INSERT INTO followers(follower, followed) VALUES(?,?)'
+
+  database.query(query, [userFollowing, userFollowed], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'User following correctly'})
       return
     }
 

@@ -43,8 +43,19 @@ const User = () => {
         document.title = `Video Net | User`
     })
 
-    const following = () => {
-        setFollow(!follow)
+    const following = async () => {
+        const response = await fetch('http://localhost:3000/api/user/follow', {
+            method: 'POST',
+            body: {
+                userFollowed: userId,
+                userFollowing: localStorage.getItem('id')
+            }
+        })
+        
+        if (response.ok) {
+            setFollow(!follow)
+            console.log('ok')
+        }
     }
 
     return (
