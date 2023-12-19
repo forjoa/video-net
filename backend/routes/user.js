@@ -150,7 +150,7 @@ user.get('/:userId', (req, res) => {
 
 // follow and unfollow
 user.post('/follow', (req, res) => {
-  const { userFollowed, userFollowing } = req.params
+  const { userFollowed, userFollowing } = req.body
   const query = 'INSERT INTO followers(follower, followed) VALUES(?,?)'
 
   database.query(query, [userFollowing, userFollowed], (err, result) => {

@@ -46,10 +46,13 @@ const User = () => {
     const following = async () => {
         const response = await fetch('http://localhost:3000/api/user/follow', {
             method: 'POST',
-            body: {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
                 userFollowed: userId,
                 userFollowing: localStorage.getItem('id')
-            }
+            })
         })
         
         if (response.ok) {
