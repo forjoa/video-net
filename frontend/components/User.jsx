@@ -1,5 +1,5 @@
 // imports 
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 // components 
@@ -13,6 +13,13 @@ const User = () => {
     const [user, setUser] = useState()
     const [videos, setVideos] = useState()
     const [follow, setFollow] = useState(false)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (userId == localStorage.getItem('id')) {
+            navigate('/my-videos')
+        }
+    })
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/user/${userId}`)
