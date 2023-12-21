@@ -8,7 +8,7 @@ const PresentationHome = () => {
                 <div className="presentation-home-content">
                     <div className="presentation-home-title">
                         <h1>
-                            <span>Video Net</span> where you can share every video important for you
+                            <span>Video Net</span> where you can share with everyone every video important for you
                         </h1>
                     </div>
                     <div className="presentation-home-image">
