@@ -80,7 +80,23 @@ const User = () => {
                 setFollow(!follow)
                 console.log('ok')
             }
-        } 
+        } else {
+            const response = await fetch('http://localhost:3000/api/user/unfollow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userFollowed: userId,
+                    userFollowing: localStorage.getItem('id')
+                })
+            })
+
+            if (response.ok) {
+                setFollow(!follow)
+                console.log('ok unfollowed')
+            }
+        }
     }
 
     return (

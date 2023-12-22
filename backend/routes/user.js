@@ -148,7 +148,7 @@ user.get('/:userId', (req, res) => {
   })
 })
 
-// follow and unfollow
+// follow 
 user.post('/follow', (req, res) => {
   const { userFollowed, userFollowing } = req.body
   const query = 'INSERT INTO followers(follower, followed) VALUES(?,?)'
@@ -163,6 +163,23 @@ user.post('/follow', (req, res) => {
     res.json(result)
   })
 })
+
+// unfollow
+user.post('/unfollow', (req, res) => {
+  const { userFollowed, userFollowing } = req.body
+  const query = 'DELETE FROM followers WHERE follower = ? AND followed = ?'
+
+  database.query(query, [userFollowing, userFollowed], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'User unfollowing correctly'})
+      return
+    }
+
+    res.json(result)
+  })
+})
+
 
 // know if a user is following other user
 user.post('/know-follow', (req, res) => {
