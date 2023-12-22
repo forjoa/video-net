@@ -68,13 +68,28 @@ video.post('/my-videos', (req, res) => {
   database.query(query, [id], (err, result) => {
     if (err) {
       console.error(err)
-      res
-        .status(500)
-        .send({ message: 'Error while looking for my videos. ' + err })
+      res.status(500).send({ message: 'Error while looking for my videos ' })
       return
     }
 
     res.json(result)
+  })
+})
+
+// delete my video
+video.post('/delete-video', (req, res) => {
+  const { videoId, ownerId } = req.body
+  const query = 'DELETE FROM videos WHERE id = ? AND userID = ?'
+  console.log(req.body)
+
+  database.query(query, [videoId, ownerId], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'Error while looking for my videos ' })
+      return
+    }
+
+    res.send({message: 'Successfully deleted', result})
   })
 })
 

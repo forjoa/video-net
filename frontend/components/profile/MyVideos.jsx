@@ -35,9 +35,25 @@ const MyVideos = () => {
             .catch(error => console.error('Error: ' + error))
     }, [userId])
 
-    const deleteVideo = (e) => {
+    const deleteVideo = async (e) => {
         const videoId = e.target.getAttribute('data-id')
         console.log(videoId)
+        console.log(localStorage.getItem('id'))
+        const response = await fetch('http://localhost:3000/api/video/delete-video', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                videoId: videoId,
+                ownerId: localStorage.getItem('id')
+            })
+        })
+
+        if (response.ok) {
+            console.log(response)
+            window.location.reload()
+        }
     }
 
     return (
