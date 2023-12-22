@@ -12,6 +12,10 @@ const MyVideos = () => {
     const [myVideos, setMyVideos] = useState([])
 
     useEffect(() => {
+        document.title = 'Video Net | My videos'
+    })
+
+    useEffect(() => {
         fetch('http://localhost:3000/api/video/my-videos', {
             method: 'POST',
             headers: {
