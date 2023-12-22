@@ -10,6 +10,7 @@
     display: flex;
     justify-content: center;
     border-bottom: .1px solid var(--grey);
+    z-index: 1;
 }
 
 .general-header-container {
@@ -47,12 +48,11 @@
 }
 
 .header-options {
-    backdrop-filter: blur(30px);
     background-color: #23232379;
-    position: absolute;
+    position: absolute;    
     top: 100px;
     right: 15%;
-    z-index: 20;
+    z-index: 1; /* Higher z-index for header-options */
     border-radius: 10px;
     border: .1px solid var(--grey);
     padding: 20px;
