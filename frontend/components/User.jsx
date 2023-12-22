@@ -16,6 +16,19 @@ const User = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        fetch(`http://localhost:3000/api/user/know-follow`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userFollowed: userId,
+                userFollowing: localStorage.getItem('id')
+            })
+        })
+            .then(response => response.json())
+            .then(data => { if (data.length === 1) setFollow(true) })
+    })
+
+    useEffect(() => {
         if (userId == localStorage.getItem('id')) {
             navigate('/my-videos')
         }
@@ -51,21 +64,23 @@ const User = () => {
     })
 
     const following = async () => {
-        const response = await fetch('http://localhost:3000/api/user/follow', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userFollowed: userId,
-                userFollowing: localStorage.getItem('id')
+        if (follow === false) {
+            const response = await fetch('http://localhost:3000/api/user/follow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userFollowed: userId,
+                    userFollowing: localStorage.getItem('id')
+                })
             })
-        })
-        
-        if (response.ok) {
-            setFollow(!follow)
-            console.log('ok')
-        }
+
+            if (response.ok) {
+                setFollow(!follow)
+                console.log('ok')
+            }
+        } 
     }
 
     return (
@@ -77,7 +92,7 @@ const User = () => {
                         <img src={`/public/users/${user.username}/profile.webp`} alt={user.username} />
                         <h2>{user.username}</h2>
                         <p>{user.description}</p>
-                        <button 
+                        <button
                             onClick={() => following()}
                             className={follow ? 'btn-unfollow' : 'btn-follow'}
                         >

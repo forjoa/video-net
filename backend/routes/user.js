@@ -83,7 +83,7 @@ user.post('/register', upload.single('photo'), async (req, res) => {
       return
     }
 
-    fs.mkdir(`../public/users/${data.username}`, (error) => {
+    fs.mkdir(`./../../public/users/${data.username}`, (error) => {
       if (error) throw error
     })
 
@@ -160,6 +160,22 @@ user.post('/follow', (req, res) => {
       return
     }
 
+    res.json(result)
+  })
+})
+
+// know if a user is following other user
+user.post('/know-follow', (req, res) => {
+  const { userFollowed, userFollowing } = req.body
+  const query = 'SELECT * FROM followers WHERE followed = ? AND follower = ?'
+  
+  database.query(query, [userFollowed, userFollowing], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'Error while looking if users are following each other' })
+      return
+    }
+    
     res.json(result)
   })
 })
