@@ -1,12 +1,18 @@
 // imports
 import { useEffect, useState } from "react"
 
+// icons
+import { IconArrowNarrowLeft, IconTrash } from "@tabler/icons-react"
+
+// styles
+import '../../styles/MyVideos.css'
+
 const MyVideos = () => {
     const userId = localStorage.getItem('id')
     const [myVideos, setMyVideos] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/video/home', {
+        fetch('http://localhost:3000/api/video/my-videos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,10 +35,41 @@ const MyVideos = () => {
             .catch(error => console.error('Error: ' + error))
     }, [userId])
 
-    console.log(myVideos)
+    const deleteVideo = (e) => {
+        const videoId = e.target.getAttribute('data-id')
+        console.log(videoId)
+    }
 
     return (
         <>
+            <div className="edit-profile-container">
+                <a href="/"><IconArrowNarrowLeft />Go Home</a>
+
+                {myVideos.length > 0 ? (
+                    <div className="all-my-videos">
+                        {myVideos.map((video) => {
+                            return (
+                                <div key={video.id} className="my-video">
+                                    <div className="my-video-content">
+                                        <p>{video.concept}</p>
+                                        <iframe
+                                            title={video.concept}
+                                            width="650"
+                                            height="315"
+                                            src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
+                                            frameBorder="0"
+                                            allowFullScreen
+                                        ></iframe>
+                                    </div>
+                                    <div className="my-video-delete">
+                                        <button onClick={deleteVideo} data-id={video.id}><IconTrash color="white" /></button>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) : (<p>Not videos yet ...</p>)}
+            </div>
         </>
     )
 }

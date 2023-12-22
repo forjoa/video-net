@@ -70,7 +70,7 @@ video.post('/my-videos', (req, res) => {
       console.error(err)
       res
         .status(500)
-        .send({ message: 'Error while looking for user videos. ' + err })
+        .send({ message: 'Error while looking for my videos. ' + err })
       return
     }
 
