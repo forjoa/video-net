@@ -197,4 +197,36 @@ user.post('/know-follow', (req, res) => {
   })
 })
 
+// my followes 
+user.post('/my-followers', (req, res) => {
+  const { id } = req.body
+  const query = 'SELECT * FROM users WHERE id IN (SELECT follower FROM followers WHERE followed = ?)'
+
+  database.query(query, [id], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'Error while looking for your followers' })
+      return
+    }
+
+    res.json(result)
+  })
+})
+
+// who i'm following
+user.post('/following', (req, res) => {
+  const {id} = req.body
+  const query = 'SELECT * FROM users WHERE id IN (SELECT followed FROM followers WHERE follower = ?)'
+
+  database.query(query, [id], (err, result) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send({ message: 'Error while looking who Im following' })
+      return
+    }
+
+    res.json(result)
+  })
+})
+
 export default user
