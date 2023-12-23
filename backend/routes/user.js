@@ -83,11 +83,11 @@ user.post('/register', upload.single('photo'), async (req, res) => {
       return
     }
 
-    fs.mkdir(`./../../public/users/${data.username}`, (error) => {
+    fs.mkdir(`./public/users/${data.username}`, (error) => {
       if (error) throw error
     })
 
-    fs.copyFile('../public/profile.webp', `../public/users/${data.username}/profile.webp`, error => {
+    fs.copyFile('./public/profile.webp', `./public/users/${data.username}/profile.webp`, error => {
       if (error) throw error
     })
 
