@@ -45,7 +45,7 @@ const Videos = () => {
             {videos.length > 0 ?
                 videos.map((video) => (
                     <div key={video.id} className="video">
-                        <h3><Link to={`/user/${video.uploader_id}`}>{video.uploader_name}</Link></h3>
+                        <h3><Link to={`/user/${video.uploader_id}`}><img src={`../../../public/users/${video.uploader_name}/profile.webp`} alt="User profile photo"/>{video.uploader_name}</Link></h3>
                         <p>{video.concept}</p>
                         <iframe
                             title={video.concept}
