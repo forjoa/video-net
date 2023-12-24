@@ -29,6 +29,24 @@
     width: 70%;
 }
 
+.video h3 a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all .3s;
+}
+
+.video h3 a:hover {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
+.video h3 a img {
+    aspect-ratio: 1/1;
+    width: 35px;
+    border-radius: 50%;
+}
+
 .video iframe {
     margin: auto;
 }
