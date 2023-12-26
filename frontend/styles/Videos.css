@@ -29,6 +29,18 @@
     width: 70%;
 }
 
+.video h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.video h3 p {
+    color: var(--grey);
+    font-weight: 400;
+    font-size: 16px;
+}
+
 .video h3 a{
     display: flex;
     align-items: center;

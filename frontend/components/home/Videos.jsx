@@ -43,20 +43,35 @@ const Videos = () => {
     return (
         <section className="all-videos">
             {videos.length > 0 ?
-                videos.map((video) => (
-                    <div key={video.id} className="video">
-                        <h3><Link to={`/user/${video.uploader_id}`}><img src={`../../../public/users/${video.uploader_name}/profile.webp`} alt="User profile photo"/>@{video.uploader_name}</Link></h3>
-                        <p>{video.concept}</p>
-                        <iframe
-                            title={video.concept}
-                            width="650"
-                            height="315"
-                            src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
-                            frameBorder="0"
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                ))
+                videos.map((video) => {
+                    const date = new Date(video.created_at)
+                    const options = {
+                        month: 'long',
+                        year: 'numeric',
+                        day: 'numeric'
+                    }
+
+                    return (
+                        <div key={video.id} className="video">
+                            <h3>
+                                <Link to={`/user/${video.uploader_id}`}>
+                                    <img src={`../../../public/users/${video.uploader_name}/profile.webp`} alt="User profile photo" />
+                                    @{video.uploader_name}
+                                </Link>
+                                <p>{date.toLocaleDateString('en-US', options)}</p>
+                            </h3>
+                            <p>{video.concept}</p>
+                            <iframe
+                                title={video.concept}
+                                width="650"
+                                height="315"
+                                src={`https://www.youtube.com/embed/${video.youtubeVideoId}`}
+                                frameBorder="0"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    )
+                })
                 : (<p>No videos yet</p>)}
         </section>
     );
