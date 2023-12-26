@@ -20,7 +20,7 @@ const Follows = () => {
 
     // set my followers
     useEffect(() => {
-        fetch('http://localhost:3000/api/user/my-followers', {
+        fetch(`${import.meta.env.VITE_API_ROUTE}user/my-followers`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ const Follows = () => {
 
     // set who i'm following
     useEffect(() => {
-        fetch('http://localhost:3000/api/user/following', {
+        fetch(`${import.meta.env.VITE_API_ROUTE}user/following`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

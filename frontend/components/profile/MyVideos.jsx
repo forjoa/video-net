@@ -16,7 +16,7 @@ const MyVideos = () => {
     })
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/video/my-videos', {
+        fetch(`${import.meta.env.VITE_API_ROUTE}video/my-videos`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,9 +41,7 @@ const MyVideos = () => {
 
     const deleteVideo = async (e) => {
         const videoId = e.target.getAttribute('data-id')
-        console.log(videoId)
-        console.log(localStorage.getItem('id'))
-        const response = await fetch('http://localhost:3000/api/video/delete-video', {
+        const response = await fetch(`${import.meta.env.VITE_API_ROUTE}video/delete-video`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +53,6 @@ const MyVideos = () => {
         })
 
         if (response.ok) {
-            console.log(response)
             window.location.reload()
         }
     }

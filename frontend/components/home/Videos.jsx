@@ -11,7 +11,7 @@ const Videos = () => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/video/home', {
+                const response = await fetch(`${import.meta.env.VITE_API_ROUTE}video/home`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

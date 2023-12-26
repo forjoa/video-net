@@ -18,7 +18,7 @@ const UploadVideo = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/api/video/upload-video', {
+            const response = await fetch(`${import.meta.env.VITE_API_ROUTE}video/upload-video`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

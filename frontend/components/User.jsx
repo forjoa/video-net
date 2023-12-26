@@ -16,7 +16,7 @@ const User = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/user/know-follow`, {
+        fetch(`${import.meta.env.VITE_API_ROUTE}user/know-follow`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -35,14 +35,14 @@ const User = () => {
     })
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/user/${userId}`)
+        fetch(`${import.meta.env.VITE_API_ROUTE}user/${userId}`)
             .then(response => response.json())
             .then(data => setUser(data[0]))
             .catch(error => console.error('Error: ', error))
     }, [userId])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/video/user/${userId}`)
+        fetch(`${import.meta.env.VITE_API_ROUTE}video/user/${userId}`)
             .then(response => response.json())
             .then(data => {
                 const videosWithId = data.map((video) => {
@@ -65,7 +65,7 @@ const User = () => {
 
     const following = async () => {
         if (follow === false) {
-            const response = await fetch('http://localhost:3000/api/user/follow', {
+            const response = await fetch(`${import.meta.env.VITE_API_ROUTE}user/follow`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ const User = () => {
                 console.log('ok')
             }
         } else {
-            const response = await fetch('http://localhost:3000/api/user/unfollow', {
+            const response = await fetch(`${import.meta.env.VITE_API_ROUTE}user/unfollow`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

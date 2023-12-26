@@ -28,7 +28,7 @@ const EditProfile = () => {
             document.title = "Video Net | Edit my profile";
 
             try {
-                const response = await fetch(`http://localhost:3000/api/user/my-info?id=${userId}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_ROUTE}user/my-info?id=${userId}`, {
                     method: "GET",
                     headers: { "Authorization": `Bearer ${token}` },
                 });
