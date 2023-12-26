@@ -33,6 +33,15 @@
     gap: 10px;
 }
 
+.my-video-content-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-video-content-text p:nth-child(2) {
+    color: var(--grey);
+}
+
 .my-video-content iframe {
     width: 100%;
 }

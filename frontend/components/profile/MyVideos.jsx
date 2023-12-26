@@ -68,10 +68,19 @@ const MyVideos = () => {
                 {myVideos.length > 0 ? (
                     <div className="all-my-videos">
                         {myVideos.map((video) => {
+                            const date = new Date(video.created_at)
+                            const options = {
+                                month: 'long',
+                                year: 'numeric',
+                                day: 'numeric'
+                            }
                             return (
                                 <div key={video.id} className="my-video">
                                     <div className="my-video-content">
-                                        <p>{video.concept}</p>
+                                        <div className="my-video-content-text">
+                                            <p>{video.concept}</p>
+                                            <p>{date.toLocaleDateString('en-US', options)}</p>
+                                        </div>
                                         <iframe
                                             title={video.concept}
                                             width="650"
@@ -88,7 +97,7 @@ const MyVideos = () => {
                             )
                         })}
                     </div>
-                ) : (<p>Not videos yet ...</p>)}
+                ) : (<p>No videos yet ...</p>)}
             </div>
         </>
     )
