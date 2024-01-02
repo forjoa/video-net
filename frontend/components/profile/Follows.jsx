@@ -70,7 +70,7 @@ const Follows = () => {
                                 return (
                                     <div className="follower" key={follower.id}>
                                         <Link to={`/user/${follower.id}`} className="follower-profile">
-                                            <img src={`/users/${follower.username}/profile.webp`} alt="Profile picture" />
+                                            <img src={follower.photo == '' ? '/profile.webp' : `/uploads/${follower.photo}`} alt="Profile picture" />
                                             <p>{follower.username}</p>
                                         </Link>
                                     </div>
@@ -82,7 +82,7 @@ const Follows = () => {
                                 return (
                                     <div className="following" key={following.id}>
                                         <Link to={`/user/${following.id}`} className="following-profile">
-                                            <img src={`/users/${following.username}/profile.webp`} alt="Profile Picture" />
+                                            <img src={following.photo == '' ? '/profile.webp' : `/uploads/${following.photo}`} alt="Profile Picture" />
                                             <p>{following.username}</p>
                                         </Link>
                                     </div>
