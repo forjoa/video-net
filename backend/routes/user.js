@@ -1,7 +1,6 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 import multer from 'multer'
-import fs from 'fs'
 import database from '../database/database.js'
 
 const user = express.Router()
@@ -83,14 +82,6 @@ user.post('/register', upload.single('photo'), async (req, res) => {
       return
     }
 
-    fs.mkdir(`./public/users/${data.username}`, (error) => {
-      if (error) throw error
-    })
-
-    fs.copyFile('./public/profile.webp', `./public/users/${data.username}/profile.webp`, error => {
-      if (error) throw error
-    })
-
     res.status(200).send({ message: 'Data saved well' })
   })
 })
@@ -140,7 +131,7 @@ user.get('/:userId', (req, res) => {
   database.query(query, userId, (err, result) => {
     if (err) {
       console.error(err)
-      res.status(500).send({ message: 'Error while searching user info'})
+      res.status(500).send({ message: 'Error while searching user info' })
       return
     }
 
@@ -148,7 +139,7 @@ user.get('/:userId', (req, res) => {
   })
 })
 
-// follow 
+// follow
 user.post('/follow', (req, res) => {
   const { userFollowed, userFollowing } = req.body
   const query = 'INSERT INTO followers(follower, followed) VALUES(?,?)'
@@ -156,7 +147,7 @@ user.post('/follow', (req, res) => {
   database.query(query, [userFollowing, userFollowed], (err, result) => {
     if (err) {
       console.error(err)
-      res.status(500).send({ message: 'User following correctly'})
+      res.status(500).send({ message: 'User following correctly' })
       return
     }
 
@@ -172,40 +163,46 @@ user.post('/unfollow', (req, res) => {
   database.query(query, [userFollowing, userFollowed], (err, result) => {
     if (err) {
       console.error(err)
-      res.status(500).send({ message: 'User unfollowing correctly'})
+      res.status(500).send({ message: 'User unfollowing correctly' })
       return
     }
 
     res.json(result)
   })
 })
-
 
 // know if a user is following other user
 user.post('/know-follow', (req, res) => {
   const { userFollowed, userFollowing } = req.body
   const query = 'SELECT * FROM followers WHERE followed = ? AND follower = ?'
-  
+
   database.query(query, [userFollowed, userFollowing], (err, result) => {
     if (err) {
       console.error(err)
-      res.status(500).send({ message: 'Error while looking if users are following each other' })
+      res
+        .status(500)
+        .send({
+          message: 'Error while looking if users are following each other',
+        })
       return
     }
-    
+
     res.json(result)
   })
 })
 
-// my followes 
+// my followes
 user.post('/my-followers', (req, res) => {
   const { id } = req.body
-  const query = 'SELECT * FROM users WHERE id IN (SELECT follower FROM followers WHERE followed = ?)'
+  const query =
+    'SELECT * FROM users WHERE id IN (SELECT follower FROM followers WHERE followed = ?)'
 
   database.query(query, [id], (err, result) => {
     if (err) {
       console.error(err)
-      res.status(500).send({ message: 'Error while looking for your followers' })
+      res
+        .status(500)
+        .send({ message: 'Error while looking for your followers' })
       return
     }
 
@@ -215,8 +212,9 @@ user.post('/my-followers', (req, res) => {
 
 // who i'm following
 user.post('/following', (req, res) => {
-  const {id} = req.body
-  const query = 'SELECT * FROM users WHERE id IN (SELECT followed FROM followers WHERE follower = ?)'
+  const { id } = req.body
+  const query =
+    'SELECT * FROM users WHERE id IN (SELECT followed FROM followers WHERE follower = ?)'
 
   database.query(query, [id], (err, result) => {
     if (err) {
