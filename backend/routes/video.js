@@ -23,7 +23,7 @@ video.post('/upload-video', (req, res) => {
 video.post('/home', (req, res) => {
   const { id } = req.body
   const query = `
-    SELECT videos.*, users.username AS uploader_name, users.id AS uploader_id 
+    SELECT videos.*, users.username AS uploader_name, users.id AS uploader_id, users.photo AS uploader_photo 
     FROM videos
     INNER JOIN users ON videos.userID = users.id
     WHERE videos.userID = ${Number(id)}

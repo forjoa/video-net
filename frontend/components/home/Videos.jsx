@@ -51,11 +51,13 @@ const Videos = () => {
                         day: 'numeric'
                     }
 
+                    console.log(video)
+
                     return (
                         <div key={video.id} className="video">
                             <h3>
                                 <Link to={`/user/${video.uploader_id}`}>
-                                    <img src={`../../../public/users/${video.uploader_name}/profile.webp`} alt="User profile photo" />
+                                    <img src={video.uploader_photo == '' ? '/profile.webp' : `/uploads/${video.uploader_photo}`} alt="User profile photo" />
                                     @{video.uploader_name}
                                 </Link>
                                 <p>{date.toLocaleDateString('en-US', options)}</p>
