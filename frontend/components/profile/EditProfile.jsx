@@ -78,7 +78,7 @@ const EditProfile = () => {
                     <label htmlFor="photo"><h2>Profile photo</h2></label>
                     <div className="photo-container">
                         <img
-                            src={`../../../public/users/${username}/profile.webp`}
+                            src={allInfo != '' ? `../../../uploads/${allInfo.photo}` : '../../../public/profile.webp'}
                             alt="Profile Photo"
                         />
                         <button className="edit-photo-button"><IconPencil />Edit</button>
