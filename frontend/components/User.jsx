@@ -105,7 +105,7 @@ const User = () => {
             {user ? (
                 <div className="profile-container">
                     <div className="presentation">
-                        <img src={`/public/users/${user.username}/profile.webp`} alt={user.username} />
+                        <img src={user.photo == '' ? '/profile.webp' : `/uploads/${user.photo}`} alt={user.username} />
                         <h2>{user.username}</h2>
                         <p>{user.description}</p>
                         <button
