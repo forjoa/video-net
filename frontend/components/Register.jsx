@@ -25,19 +25,17 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const data = {
-            username: username,
-            description: description,
-            photo: photo,
-            email: email,
-            password: password
-        }
+        const data = new FormData()
+        data.append('username', username)
+        data.append('password', password)
+        data.append('description', description)
+        data.append('email', email)
+        data.append('photo', photo)
 
         try {
             const response = await fetch(`${import.meta.env.VITE_API_ROUTE}user/register`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: data
             });
 
             const res = await response.json()

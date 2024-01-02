@@ -11,7 +11,7 @@ let uniquePhotoName = ''
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/users/uploads/')
+    cb(null, 'uploads/')
   },
   filename: (req, file, cb) => {
     uniquePhotoName = `${Date.now()}-${file.originalname}`
